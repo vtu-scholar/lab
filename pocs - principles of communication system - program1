@@ -1,0 +1,24 @@
+// am modulation and demodulation in matlab
+
+
+
+clc
+clear all
+close all
+
+t=linspace(0,0.1,50000) 
+
+//will generate a vector t containing 50000 evenly spaced points from 0 to 0.1. Here's how it works:
+//linspace(a, b, n) generates a row vector of n points linearly spaced between a and b.
+//In these case, a is 0, b is 0.1, and n is 50000.
+fc=500; //carrier signal frequency
+fm=500;
+fs=100000;
+am=5;
+ac=10;
+m=am/ac
+wc=2*pi*fc*t;
+wm=2*pi*fm*t;
+ec=ac*sin(wc);
+em=am*sin(wm);
+y=ammod(em,fc,fs,0,ac)
