@@ -1,0 +1,74 @@
+//sampling and generate sampling frequency
+
+% Clear the command window
+
+clc;
+
+% Clear all variables from the workspace
+clear all;
+
+% Close all figure windows
+close all;
+
+% Define the final time value
+tfinal = 0.05;
+
+% Generate a time vector from 0 to tfinal with a step of 0.000005
+t = 0:0.000005:tfinal;
+
+% Prompt the user to enter the analog frequency
+fd = input('Enter analog frequency: ');
+
+% Generate the analog signal
+xt = cos(2 * pi * fd * t);
+
+% Define the first sampling frequency as 1.3 times the analog frequency
+fs1 = 1.3 * fd;
+
+% Generate the discrete time vector for the first sampling frequency
+n1 = 0:1/fs1:tfinal;
+
+% Sample the analog signal at the first sampling frequency
+xn1 = cos(2 * pi * fd * n1);
+
+% Plot the analog and sampled signals for the first sampling frequency
+subplot(3, 1, 1);
+plot(t, xt, 'b', n1, xn1, 'r*-');
+title('Undersampling plot');
+
+% Define the second sampling frequency as 2 times the analog frequency
+fs2 = 2 * fd;
+
+% Generate the discrete time vector for the second sampling frequency
+n2 = 0:1/fs2:tfinal;
+
+% Sample the analog signal at the second sampling frequency
+xn2 = cos(2 * pi * fd * n2);
+
+% Plot the analog and sampled signals for the second sampling frequency
+subplot(3, 1, 2);
+plot(t, xt, 'b', n2, xn2, 'r*-');
+title('Nyquist plot');
+
+% Define the third sampling frequency
+fs3 = 3 * fd;
+
+% Generate the discrete time vector for the third sampling frequency
+n3 = 0:1/fs3:tfinal;
+
+% Sample the analog signal at the third sampling frequency
+xn3 = cos(2 * pi * fd * n3);
+
+% Plot the analog and sampled signals for the third sampling frequency
+subplot(3, 1, 3);
+plot(t, xt, 'b', n3, xn3, 'g*-');
+title('Oversampling plot');
+
+% Label the x-axis of the last subplot
+xlabel('time');
+
+% Label the y-axis of the last subplot
+ylabel('amplitude');
+
+% Add a legend to the last subplot
+legend('analog', 'discrete');
