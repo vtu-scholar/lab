@@ -1,0 +1,185 @@
+// 3rd program 
+
+// program to generate the step function -scilab
+
+
+% Clear workspace and close all figures
+clc;
+clear all;
+close all;
+
+% Define the x-axis range from -5 to 5 with step size 0.1
+x = -5:0.1:5;
+
+% Initialize the y-axis values with zeros
+y = zeros(size(x));
+
+% Set y to 1 for all x >= 0 (step function)
+y(x >= 0) = 1;
+
+% Plot the step function
+plot(x, y);
+
+% Label the x-axis
+xlabel('x');
+
+% Label the y-axis
+ylabel('Step Function');
+
+% Add a title to the plot
+title('Step Function');
+
+% Display grid lines on the plot
+grid on;
+
+
+
+
+//program to generate the rectungular wave
+
+
+% Clear workspace and close all figures
+clc;
+clear all;
+close all;
+
+% Define the x-axis range from -5 to 5 with step size 0.1
+x = -5:0.1:5;
+
+% Define the interval for the rectangular function
+a = -2;
+b = 2;
+
+% Initialize the y-axis values with zeros
+y = zeros(size(x));
+
+% Set y to 1 for all x in the interval [a, b]
+y((x >= a) & (x <= b)) = 1;
+
+% Plot the rectangular function
+plot(x, y);
+
+% Label the x-axis
+xlabel('x');
+
+% Label the y-axis
+ylabel('Rectangular Function');
+
+% Add a title to the plot
+title('RECTANGULAR FUNCTION');
+
+% Display grid lines on the plot
+grid on;
+
+
+//exponential function
+
+% Clear workspace and close all figures
+clc;
+clear all;
+close all;
+
+% Define the x-axis range from -5 to 5 with step size 0.1
+x = -5:0.1:5;
+
+% Define the coefficients for the exponential function
+a = 1;
+b = 0.5;
+
+% Calculate the y-axis values for the exponential function
+y = a * exp(b * x);
+
+% Plot the exponential function
+plot(x, y);
+
+% Label the x-axis
+xlabel('x');
+
+% Label the y-axis
+ylabel('Exponential Function');
+
+% Add a title to the plot
+title('Exponential Function');
+
+% Display grid lines on the plot
+grid on;
+
+
+//triangular wave 
+% Generate a vector of 1000 evenly spaced points between -10 and 10
+x = linspace(-10, 10, 1000);
+
+% Define the period of the triangular wave
+period = 2; % Adjust this value as needed
+
+% Normalize x to fit within one period of the triangular wave
+% Step 1: Shift x by adding half the period to center the wave around 0
+% Step 2: Use the mod function to wrap the values of x into the range [0, period)
+% Step 3: Subtract half the period to shift the range to [-period/2, period/2]
+x_normalized = mod(x + period / 2, period) - period / 2;
+
+x_normalized = mod(x + period / 2, period) - period / 2;
+
+% Generate the triangular wave y values
+y = 1 - 2 * abs(x_normalized) / (period / 2);
+
+% Set y to 0 for all x values where |x| >= period / 2
+y(abs(x) >= period / 2) = 0;
+
+% Plot the triangular wave
+plot(x, y);
+
+% Label the x-axis
+xlabel('x');
+
+% Label the y-axis
+ylabel('Triangular signal');
+
+% Add a title to the plot
+title('Triangular signal');
+
+% Turn the grid on for better visualization
+grid on;
+
+
+//sine signal 
+
+% Clear the command window
+clc;
+
+% Clear all variables from the workspace
+clear all;
+
+% Close all figure windows
+close all;
+
+% Generate a time vector from 0 to 1 with a step of 0.001
+t = 0:0.001:1;
+
+% Define the frequency of the sine wave
+f = 2;
+
+% Generate the sine wave signal
+% y = sin(2 * pi * f * t)
+% 2 * pi * f represents the angular frequency
+y = sin(2 * pi * f * t);
+
+% Plot the sine wave
+plot(t, y);
+
+% Label the x-axis as 'time'
+xlabel('time');
+
+% Label the y-axis as 'amp'
+ylabel('amp');
+
+
+
+
+
+
+
+
+
+
+
