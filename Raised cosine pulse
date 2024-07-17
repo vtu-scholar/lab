@@ -1,0 +1,38 @@
+
+% Nrz raised cosine pulse
+clc; % Clear the command window
+clear all; % Clear all variables from the workspace
+close all; % Close all figure windows
+
+fs = 1000; % Sampling frequency in Hz
+T = 1/fs; % Sampling period in seconds
+pulse_duration = 0.1; % Duration of the pulse in seconds
+roll_off_factor = 0.5; % Roll-off factor for the raised cosine pulse
+pulse_delay = 0.05; % Delay to apply to the pulse in seconds
+
+% Create a time vector from -pulse_duration/2 to pulse_duration/2 with a step size of T
+t = -pulse_duration / 2 : T : pulse_duration / 2;
+
+% Calculate the raised cosine pulse
+raised_cosine_pulse = (sin(pi * t / pulse_duration) ./ (pi * t / pulse_duration)) ...
+                      .* cos(pi * roll_off_factor * t / pulse_duration) ...
+                      ./ (1 - (2 * roll_off_factor * t / pulse_duration).^2);
+
+% Initialize a zero vector for the delayed pulse with the same length as the time vector
+delayed_pulse = zeros(1, length(t));
+
+% Find the indices in the time vector where the time values are within the pulse delay range
+delayed_index = find(t >= -pulse_delay & t <= pulse_delay);
+
+% Assign the corresponding values of the raised cosine pulse to these indices to create a delayed pulse
+delayed_pulse(delayed_index) = raised_cosine_pulse((length(raised_cosine_pulse)/2 - length(delayed_index)/2 + 1) ...
+                                                    :(length(raised_cosine_pulse)/2 + length(delayed_index)/2));
+
+% Plot the delayed pulse
+figure; % Open a new figure window
+plot(t, delayed_pulse); % Plot the delayed pulse against time
+xlabel('Time (s)'); % Label the x-axis
+ylabel('Amplitude'); % Label the y-axis
+title('Nrz raised cosine pulse'); % Add a title to the plot
+grid on; % Enable the grid for the plot
+
