@@ -1,0 +1,33 @@
+
+
+
+
+% Define the mean of the Gaussian distribution
+mu = 0;
+
+% Define the standard deviation of the Gaussian distribution
+sigma = 1;
+
+% Create a range of x values from -5 to 5 with an increment of 0.1
+x = -5:0.1:5;
+
+% Calculate the Probability Density Function (PDF) of the Gaussian distribution
+pdf = (1/(sigma*sqrt(2*pi))) * exp(-(x-mu).^2/(2*sigma^2));
+
+% Open a new figure window for plotting
+figure;
+
+% Plot the PDF of the Gaussian distribution
+plot(x, pdf, 'b', 'LineWidth', 3);
+
+% Add a title to the plot
+title('Probability Density Function of Gaussian Distribution');
+
+% Label the x-axis
+xlabel('x');
+
+% Label the y-axis
+ylabel('PDF');
+
+% Turn on the grid for better visualization
+grid on;
