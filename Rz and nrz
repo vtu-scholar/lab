@@ -1,0 +1,46 @@
+
+% Clear all variables, close all figures
+clc;
+clear all;
+close all;
+
+% Define the binary sequence
+binary_sequence = [1 0 1 1 0 0 1 0];
+
+% Define bit duration and sampling rate
+bit_duration = 1;
+sampling_rate = 100;
+half_duration = sampling_rate / 2;
+
+% Define time vector
+t = 0:1/sampling_rate:length(binary_sequence);
+
+% Initialize RZ signal
+rz_signal = zeros(1, length(t));
+
+% Generate RZ signal
+for i = 1:length(binary_sequence)
+    if binary_sequence(i) == 1
+        rz_signal((i-1)*sampling_rate + 1:(i-1)*sampling_rate + half_duration) = 1;
+        rz_signal((i-1)*sampling_rate + half_duration + 1:i*sampling_rate) = 0;
+    else
+        rz_signal((i-1)*sampling_rate + 1:i*sampling_rate) = 0;
+    end
+end
+
+% Plot the binary sequence
+figure;
+subplot(2,1,1);
+stairs([binary_sequence, binary_sequence(end)], 'LineWidth', 2);
+title('Binary sequence');
+ylim([-0.5 1.5]);
+xlabel('Bit Index');
+ylabel('Amplitude');
+
+% Plot the RZ signal
+subplot(2,1,2);
+plot(t, rz_signal, 'LineWidth', 2);
+title('RZ signal');
+ylim([-1.5 1.5]);
+xlabel('Time');
+ylabel('Amplitude');
