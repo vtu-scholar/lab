@@ -44,3 +44,56 @@ title('RZ signal');
 ylim([-1.5 1.5]);
 xlabel('Time');
 ylabel('Amplitude');
+
+
+
+
+
+
+
+% Experiment - 08
+% NRZ
+
+% Define the binary sequence
+binary_sequence = [1 0 1 0 0 1 0];
+
+% Define the bit duration (in seconds)
+bit_duration = 1;
+
+% Define the sampling rate (samples per second)
+sampling_rate = 100;
+
+% Generate a time vector from 0 to the length of the binary sequence
+% The time vector has a step size of 1/sampling_rate
+t = 0:1/sampling_rate:length(binary_sequence);
+
+% Initialize the NRZ signal with zeros, with the same length as the time vector
+nrz_signal = zeros(1, length(t));
+
+% Generate the NRZ signal
+for i = 1:length(binary_sequence)
+    if binary_sequence(i) == 1
+        % If the bit is 1, set the corresponding segment in the NRZ signal to 1
+        nrz_signal((i-1)*sampling_rate+1 : i*sampling_rate) = 1;
+    else
+        % If the bit is 0, set the corresponding segment in the NRZ signal to -1
+        nrz_signal((i-1)*sampling_rate+1 : i*sampling_rate) = -1;
+    end
+end
+
+% Plot the binary sequence
+figure;
+subplot(2,1,1);
+stairs([binary_sequence binary_sequence(end)], 'Linewidth', 2);
+title('Binary sequence');
+ylim([-0.5 1.5]);
+xlabel('Bit Index');
+ylabel('Amplitude');
+
+% Plot the NRZ signal
+subplot(2,1,2);
+plot(t, nrz_signal);
+title('NRZ Signal');
+ylim([-1.5 1.5]);
+xlabel('Time');
+ylabel('Amplitude');
