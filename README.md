@@ -1,4 +1,1 @@
-//educational purposes
-
-
-by - root@sha0x7
+ root@sha0x7
